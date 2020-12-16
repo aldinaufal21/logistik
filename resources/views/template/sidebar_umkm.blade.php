@@ -28,10 +28,10 @@
         <li class="{{ (request()->is('/')) ? 'active' : '' }}">
           <a href="/"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
-        <li class="{{ (request()->is('umkm/distributor*')) ? 'active' : '' }}">
-            <a href="/umkm/distributor"><i class="fa fa-users"></i> <span>Kelola Distributor</span></a>
+        <li class="{{ (request()->is('distributor*')) ? 'active' : '' }}">
+            <a href="{{ route('distributor.index') }}"><i class="fa fa-users"></i> <span>Kelola Distributor</span></a>
         </li>
-        <li class="{{ (request()->is('kategori/*')) ? 'active' : '' }}">
+        <li class="{{ (request()->is('kategori*')) ? 'active' : '' }}">
             <a href="{{ route('kategori.index') }}"><i class="fa fa-cube"></i> <span>Kelola kategori barang</span></a>
         </li>
         <li class="{{ (request()->is('umkm/barang*')) ? 'active' : '' }}">

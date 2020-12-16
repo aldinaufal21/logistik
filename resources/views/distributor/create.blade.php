@@ -25,17 +25,28 @@ Kategori
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Ubah Kategori Barang</h3>
+          <h3 class="box-title">Tambah Distributor</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" action="{{ route('kategori.update', $category->id) }}" method="post">
+        <form role="form" action="{{ route('distributor.store') }}" method="post">
           @csrf
-          @method('PUT')
           <div class="box-body">
             <div class="form-group">
-              <label for="js-nama-kategori">Nama Kategori Barang</label>
-              <input type="text" name="nama_kategori" value="{{ $category->nama_kategori }}" class="form-control" id="js-nama-kategori" placeholder="Nama Kategori Barang">
+              <label for="js-nama">Nama</label>
+              <input type="text" name="nama" class="form-control" id="js-nama" placeholder="Nama">
+            </div>
+            <div class="form-group">
+              <label for="js-alamat">Alamat</label>
+              <input type="text" name="alamat" class="form-control" id="js-alamat" placeholder="Alamat">
+            </div>
+            <div class="form-group">
+              <label for="js-telefon">Telefon</label>
+              <input type="text" name="telefon" class="form-control" id="js-telefon" placeholder="Telefon">
+            </div>
+            <div class="form-group">
+              <label for="js-email">Email</label>
+              <input type="email" name="email" class="form-control" id="js-email" placeholder="Email">
             </div>
           </div>
           <!-- /.box-body -->

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::resource('kategori', 'KategoriBarangController');
+Route::resource('distributor', 'DistributorController');
 
 Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function (){
     Route::get('/', 'PengelolaController@index');

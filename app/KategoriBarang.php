@@ -15,6 +15,6 @@ class KategoriBarang extends Model
     
     public function umkm()
     {
-        return $this->belongsTo('App\umkm');
+        return $this->belongsTo('App\Umkm');
     }
 }
