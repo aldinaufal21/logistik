@@ -25,9 +25,12 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview active">
-          <a href="../mailbox/mailbox.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+        <li class="treeview {{ (request()->is('pengelola/dashboard*')) ? 'active' : '' }}">
+          <a href="/pengelola/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
+        <li class="treeview {{ (request()->is('pengelola/umkm*')) ? 'active' : '' }}">
+            <a href="/pengelola/umkm"><i class="fa fa-cube"></i> <span>Kelola UMKM</span></a>
+          </li>
       </ul>
     </section>
     <!-- /.sidebar -->

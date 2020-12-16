@@ -1,4 +1,4 @@
-@extends('template.index')
+@extends('template.pengelola')
 
 @section('title')
     Dashboard

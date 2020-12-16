@@ -38,7 +38,7 @@
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  @include('template.sidebar')
+  @include('template.sidebar_umkm')
 
   <!-- =============================================== -->
 
