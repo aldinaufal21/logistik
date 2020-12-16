@@ -8,6 +8,6 @@ class UmkmController extends Controller
 {
     public function index()
     {
-        return view('pengelola.index');
+        return view('umkm.index');
     }
 }

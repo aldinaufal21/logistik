@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('umkm');
 })->middleware('auth');
 
+Route::resource('kategori', 'KategoriBarangController');
+
 Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function (){
     Route::get('/', 'PengelolaController@index');
 });
