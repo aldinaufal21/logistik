@@ -13,12 +13,8 @@ class Distributor extends Model
         'alamat',
         'telefon',
         'email',
+        'umkm_id',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
 
     public function umkm()
     {

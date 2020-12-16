@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Distributor;
 use App\KategoriBarang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,10 @@ class KategoriBarangController extends Controller
 
     public function create()
     {
-        return view('kategori.create');
+        $umkm = Auth::user()->umkm()->first();
+        $distributors = Distributor::where('umkm_id', $umkm->id)->get();
+
+        return view('kategori.create', compact('distributors'));
     }
 
     public function store(Request $request)
@@ -27,6 +31,7 @@ class KategoriBarangController extends Controller
 
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
+            'distributor_id' => 'required',
         ]);
 
         $requestData['umkm_id'] = Auth::user()->umkm()->first()->id;
@@ -40,15 +45,18 @@ class KategoriBarangController extends Controller
 
     public function edit(Request $request, $category)
     {
+        $umkm = Auth::user()->umkm()->first();
+        $distributors = Distributor::where('umkm_id', $umkm->id)->get();
         $category = KategoriBarang::find($category);
 
-        return view('kategori.edit', compact('category'));
+        return view('kategori.edit', compact('category', 'distributors'));
     }
 
     public function update(Request $request, $category)
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
+            'distributor_id' => 'required',
         ]);
 
         $category = KategoriBarang::find($category);

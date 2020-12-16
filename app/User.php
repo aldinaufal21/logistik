@@ -41,9 +41,4 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Umkm');
     }
-
-    public function distributor()
-    {
-        return $this->hasOne('App\Distributor');
-    }
 }

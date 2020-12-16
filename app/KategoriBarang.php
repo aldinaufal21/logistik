@@ -11,6 +11,7 @@ class KategoriBarang extends Model
     protected $fillable = [
         'nama_kategori',
         'umkm_id',
+        'distributor_id',
     ];
     
     public function umkm()
