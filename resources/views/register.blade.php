@@ -11,6 +11,8 @@
 @section('content')
 <form action="{{ route('register') }}" method="POST">
     @csrf
+    
+    <input type="hidden" name="role" value="1">
 
     <div class="form-group has-feedback">
         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="{{ __('Name') }}" autofocus>
@@ -23,10 +25,10 @@
         @enderror
     </div>
     <div class="form-group has-feedback">
-        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email Address') }}">
+        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="{{ __('username') }}">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
-        @error('email')
+        @error('username')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    Dashboard
+    ini adalah pengelola
 @endsection

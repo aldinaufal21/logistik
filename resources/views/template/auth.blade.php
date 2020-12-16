@@ -35,6 +35,7 @@
   </div>
   <!-- /.auth-logo -->
   <div class="login-box-body">
+
     <p class="login-box-msg">@yield('title-content')</p>
 
     @yield('content')

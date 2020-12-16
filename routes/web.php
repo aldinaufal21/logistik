@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('umkm');
 })->middleware('auth');
+
+Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function (){
+    Route::get('/', 'PengelolaController@index');
+});
+
+Route::group(['prefix' => 'umkm', 'middleware' => 'Umkm'], function (){
+    Route::get('/', 'UmkmController@index');
+});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
