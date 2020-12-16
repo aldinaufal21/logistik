@@ -40,7 +40,12 @@
   <!-- =============================================== -->
 
   <!-- Left side column. contains the sidebar -->
-  @include('template.sidebar')
+  @if(Auth::user()->role == '1')
+    @include('template.sidebar_pengelola')
+  @elseif(Auth::user()->role == '2')
+    @include('template.sidebar_umkm')
+  @endif
+  
 
   <!-- =============================================== -->
 

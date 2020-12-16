@@ -1,7 +1,7 @@
 @extends('template.index')
 
 @section('title')
-    Kategori
+    Dashboard
 @endsection
 
 @section('content')

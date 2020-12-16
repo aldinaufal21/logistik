@@ -1,9 +1,9 @@
-@extends('template.pengelola')
+@extends('template.index')
 
 @section('title')
     Dashboard
 @endsection
 
 @section('content')
-    ini adalah pengelola
+    Selamat Datang {{ Auth::user()->username }}
 @endsection

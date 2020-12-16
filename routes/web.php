@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('umkm');
-})->middleware('auth');
-
 Route::resource('kategori', 'KategoriBarangController');
 
 Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function (){
@@ -27,6 +23,8 @@ Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function ()
 Route::group(['prefix' => 'umkm', 'middleware' => 'Umkm'], function (){
     Route::get('/', 'UmkmController@index');
 });
+
+Route::get('/', 'dashboardController@index')->name('dashboard.index');
 
 Auth::routes();
 

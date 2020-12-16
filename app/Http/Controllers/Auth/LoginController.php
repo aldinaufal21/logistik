@@ -65,23 +65,7 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        switch (Auth::user()->role) {
-            case '1':
-                $this->redirectTo = '/pengelola';
-                return $this->redirectTo;
-                break;
-
-            case '2':
-                $this->redirectTo = '/umkm';
-                return $this->redirectTo;
-                break;
-            
-            default:
-                $this->redirectTo = '/login';
-                return $this->redirectTo;
-                break;
-        }
-
+        return route('dashboard.index');
     }
 
     /**
