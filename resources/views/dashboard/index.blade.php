@@ -64,7 +64,7 @@
 
 @else
     @section('content')
-        selamat Datang {{ Auth::user()->username }}
+        selamat Datang {{ Auth::user()->name }}
     @endsection
 @endif
 

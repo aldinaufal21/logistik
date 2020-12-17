@@ -5,7 +5,7 @@
 @endsection
 
 @section('title-content')
-    Login Akun
+    Silahkan Login
 @endsection
 
 @section('content')

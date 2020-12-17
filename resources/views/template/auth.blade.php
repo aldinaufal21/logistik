@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,37 +28,36 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+
 <body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="../../index2.html"><b>LOGISTIK</b></a>
+  <div class="login-box">
+    <!-- /.auth-logo -->
+    <div class="login-box-body">
+
+      <img src="{{ asset('images/assets/logo_login.png') }}" class="img img-responsive" style="width: 60%; margin:auto;">
+      <p class="login-box-msg">@yield('title-content')</p>
+      @yield('content')
+
+    </div>
+    <!-- /.auth-box-body -->
   </div>
-  <!-- /.auth-logo -->
-  <div class="login-box-body">
+  <!-- /.auth-box -->
 
-    <p class="login-box-msg">@yield('title-content')</p>
-
-    @yield('content')
-
-  </div>
-  <!-- /.auth-box-body -->
-</div>
-<!-- /.auth-box -->
-
-<!-- jQuery 3 -->
-<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- iCheck -->
-<script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
+  <!-- jQuery 3 -->
+  <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  <!-- iCheck -->
+  <script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
+  <script>
+    $(function() {
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' /* optional */
+      });
     });
-  });
-</script>
+  </script>
 </body>
+
 </html>
