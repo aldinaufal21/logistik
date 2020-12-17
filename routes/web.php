@@ -30,7 +30,7 @@ Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function ()
 //     Route::get('/', 'UmkmController@index');
 // });
 
-Route::get('/', 'dashboardController@index')->name('dashboard.index')->middleware('auth');
+Route::get('/', 'DashboardController@index')->name('dashboard.index')->middleware('auth');
 
 Auth::routes();
 
