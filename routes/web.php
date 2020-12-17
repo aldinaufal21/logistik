@@ -25,7 +25,9 @@ Route::group(['prefix' => 'umkm', 'middleware' => 'Umkm'], function (){
     Route::get('/', 'UmkmController@index');
 });
 
-Route::get('/', 'dashboardController@index')->name('dashboard.index');
+Route::group(['middleware' => ['Pengelola', 'Umkm']], function () {
+    Route::get('/', 'dashboardController@index')->name('dashboard.index');
+});
 
 Auth::routes();
 
