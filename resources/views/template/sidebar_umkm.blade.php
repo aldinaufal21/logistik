@@ -34,8 +34,8 @@
         <li class="{{ (request()->is('kategori*')) ? 'active' : '' }}">
             <a href="{{ route('kategori.index') }}"><i class="fa fa-cube"></i> <span>Kelola kategori barang</span></a>
         </li>
-        <li class="{{ (request()->is('umkm/barang*')) ? 'active' : '' }}">
-            <a href="/umkm/barang"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
+        <li class="{{ (request()->is('barang*')) ? 'active' : '' }}">
+            <a href="{{ route('barang.index') }}"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
         </li>
         <li class="{{ (request()->is('umkm/barang_keluar*')) ? 'active' : '' }}">
             <a href="/umkm/barang_keluar"><i class="fa fa-cart-arrow-down "></i> <span>Kelola barang keluar</span></a>
