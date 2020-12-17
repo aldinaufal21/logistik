@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('kategori', 'KategoriBarangController');
-Route::resource('distributor', 'DistributorController');
-Route::resource('barang', 'BarangController');
-Route::resource('umkm', 'UmkmController');
+Route::resource('kategori', 'KategoriBarangController')->middleware('auth');
+Route::resource('distributor', 'DistributorController')->middleware('auth');
+Route::resource('barang', 'BarangController')->middleware('auth');
+Route::resource('umkm', 'UmkmController')->middleware('auth');
 
 Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function (){
     Route::get('/', 'PengelolaController@index');
