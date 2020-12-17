@@ -25,12 +25,18 @@ class DistributorController extends Controller
     {
         $requestData = $request->all();
 
-        $request->validate([
+        $validator = Validator::make($requestData, [
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'telefon' => 'required|string|max:255',
             'email' => 'required|string|max:255|email',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('distributor.create')
+                ->with('errors', $validator->errors());
+        }
 
         $requestData['umkm_id'] = Auth::user()->umkm()->first()->id;
 
@@ -50,12 +56,20 @@ class DistributorController extends Controller
 
     public function update(Request $request, $distributor)
     {
-        $request->validate([
+        $requestData = $request->all();
+
+        $validator = Validator::make($requestData, [
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'telefon' => 'required|string|max:255',
             'email' => 'required|string|max:255|email',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('distributor.edit')
+                ->with('errors', $validator->errors());
+        }
 
         $distributor = Distributor::find($distributor);
         $distributor->update($request->all());

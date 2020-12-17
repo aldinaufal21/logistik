@@ -29,10 +29,16 @@ class KategoriBarangController extends Controller
     {
         $requestData = $request->all();
 
-        $request->validate([
+        $validator = Validator::make($requestData, [
             'nama_kategori' => 'required|string|max:255',
             'distributor_id' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('kategori.create')
+                ->with('errors', $validator->errors());
+        }
 
         $requestData['umkm_id'] = Auth::user()->umkm()->first()->id;
 
@@ -54,13 +60,18 @@ class KategoriBarangController extends Controller
 
     public function update(Request $request, $category)
     {
-        $request->validate([
+        $requestData = $request->all();
+
+        $validator = Validator::make($requestData, [
             'nama_kategori' => 'required|string|max:255',
             'distributor_id' => 'required',
         ]);
 
-        $category = KategoriBarang::find($category);
-        $category->update($request->all());
+        if ($validator->fails()) {
+            return redirect()
+                ->route('kategori.edit')
+                ->with('errors', $validator->errors());
+        }
 
         return redirect()
             ->route('kategori.index')

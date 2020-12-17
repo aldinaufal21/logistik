@@ -36,6 +36,7 @@
         </li>
         <li class="{{ (request()->is('barang*')) ? 'active' : '' }}">
             <a href="/barang"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
+            <a href="{{ route('barang.index') }}"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
         </li>
         <li class="{{ (request()->is('barang_keluar*')) ? 'active' : '' }}">
             <a href="/barang_keluar"><i class="fa fa-cart-arrow-down "></i> <span>Kelola barang keluar</span></a>

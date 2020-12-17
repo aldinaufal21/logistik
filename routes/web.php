@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('kategori', 'KategoriBarangController');
 Route::resource('distributor', 'DistributorController');
+Route::resource('barang', 'BarangController');
 Route::resource('umkm', 'UmkmController');
 
 Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function (){

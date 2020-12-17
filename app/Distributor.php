@@ -20,4 +20,9 @@ class Distributor extends Model
     {
         return $this->belongsTo('App\Umkm');
     }
+
+    public function barang()
+    {
+        return $this->hasMany('App\Barang');
+    }
 }
