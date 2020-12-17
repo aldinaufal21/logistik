@@ -34,17 +34,17 @@
         <li class="{{ (request()->is('kategori*')) ? 'active' : '' }}">
             <a href="{{ route('kategori.index') }}"><i class="fa fa-cube"></i> <span>Kelola kategori barang</span></a>
         </li>
-        <li class="{{ (request()->is('umkm/barang*')) ? 'active' : '' }}">
-            <a href="/umkm/barang"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
+        <li class="{{ (request()->is('barang*')) ? 'active' : '' }}">
+            <a href="/barang"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
         </li>
-        <li class="{{ (request()->is('umkm/barang_keluar*')) ? 'active' : '' }}">
-            <a href="/umkm/barang_keluar"><i class="fa fa-cart-arrow-down "></i> <span>Kelola barang keluar</span></a>
+        <li class="{{ (request()->is('barang_keluar*')) ? 'active' : '' }}">
+            <a href="/barang_keluar"><i class="fa fa-cart-arrow-down "></i> <span>Kelola barang keluar</span></a>
         </li>
-        <li class="{{ (request()->is('umkm/opname*')) ? 'active' : '' }}">
-            <a href="/umkm/opname"><i class="fa fa-file-text "></i> <span>Stok Opname</span></a>
+        <li class="{{ (request()->is('opname*')) ? 'active' : '' }}">
+            <a href="/opname"><i class="fa fa-file-text "></i> <span>Stok Opname</span></a>
         </li>
-        <li class="{{ (request()->is('umkm/report*')) ? 'active' : '' }}">
-            <a href="/umkm/report"><i class="fa fa-print "></i> <span>Report Data</span></a>
+        <li class="{{ (request()->is('report*')) ? 'active' : '' }}">
+            <a href="/report"><i class="fa fa-print "></i> <span>Report Data</span></a>
         </li>
       </ul>
     </section>
