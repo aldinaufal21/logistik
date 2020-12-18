@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Distributor;
-use App\KategoriBarang;
+use App\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +12,7 @@ class KategoriBarangController extends Controller
 {
     public function index()
     {
-        $categories = KategoriBarang::all();
+        $categories = Kategori::all();
 
         return view('kategori.index', compact('categories'));
     }
@@ -20,9 +20,8 @@ class KategoriBarangController extends Controller
     public function create()
     {
         $umkm = Auth::user()->umkm()->first();
-        $distributors = Distributor::where('umkm_id', $umkm->id)->get();
 
-        return view('kategori.create', compact('distributors'));
+        return view('kategori.create');
     }
 
     public function store(Request $request)
@@ -31,7 +30,6 @@ class KategoriBarangController extends Controller
 
         $validator = Validator::make($requestData, [
             'nama_kategori' => 'required|string|max:255',
-            'distributor_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -42,7 +40,7 @@ class KategoriBarangController extends Controller
 
         $requestData['umkm_id'] = Auth::user()->umkm()->first()->id;
 
-        KategoriBarang::create($requestData);
+        Kategori::create($requestData);
 
         return redirect()
             ->route('kategori.index')
@@ -52,10 +50,9 @@ class KategoriBarangController extends Controller
     public function edit(Request $request, $category)
     {
         $umkm = Auth::user()->umkm()->first();
-        $distributors = Distributor::where('umkm_id', $umkm->id)->get();
-        $category = KategoriBarang::find($category);
+        $category = Kategori::find($category);
 
-        return view('kategori.edit', compact('category', 'distributors'));
+        return view('kategori.edit', compact('category'));
     }
 
     public function update(Request $request, $category)
@@ -64,7 +61,6 @@ class KategoriBarangController extends Controller
 
         $validator = Validator::make($requestData, [
             'nama_kategori' => 'required|string|max:255',
-            'distributor_id' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -73,6 +69,9 @@ class KategoriBarangController extends Controller
                 ->with('errors', $validator->errors());
         }
 
+        $category = Kategori::find($category);
+        $category->update($requestData);
+
         return redirect()
             ->route('kategori.index')
             ->with('success', 'Kategori barang Berhasil Diubah.');
@@ -80,7 +79,7 @@ class KategoriBarangController extends Controller
 
     public function destroy(Request $request, $category)
     {
-        $category = KategoriBarang::find($category);
+        $category = Kategori::find($category);
         $category->delete();
 
         return redirect()

@@ -35,7 +35,6 @@
             <a href="{{ route('kategori.index') }}"><i class="fa fa-cube"></i> <span>Kelola kategori barang</span></a>
         </li>
         <li class="{{ (request()->is('barang*')) ? 'active' : '' }}">
-            <a href="/barang"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
             <a href="{{ route('barang.index') }}"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
         </li>
         <li class="{{ (request()->is('barang_keluar*')) ? 'active' : '' }}">

@@ -37,15 +37,6 @@ Kategori
               <label for="js-nama-kategori">Nama Kategori Barang</label>
               <input type="text" name="nama_kategori" value="{{ $category->nama_kategori }}" class="form-control" id="js-nama-kategori" placeholder="Nama Kategori Barang">
             </div>
-            <div class="form-group">
-              <label for="js-distributor">Distributor</label>
-              <select name="distributor_id" class="form-control" id="js-distributor">
-                <option>Pilih Distributor</option>
-                @foreach($distributors as $distributor)
-                  <option value="{{ $distributor->id }}" {{ $category->distributor_id == $distributor->id ? "selected" : "" }}>{{ $distributor->nama }}</option>
-                @endforeach
-              </select>
-            </div>
           </div>
           <!-- /.box-body -->
 

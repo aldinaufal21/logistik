@@ -33,12 +33,18 @@ Kategori
               <tr>
                 <td>{{ $category->nama_kategori }}</td>
                 <td>
-                  <form action="{{ route('kategori.destroy', $category->id) }}" method="POST">
                   <a href="{{ route('kategori.edit', $category->id) }}" class="btn btn-primary">Ubah</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                  </form>
+                  <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    data-toggle="modal" 
+                    data-target="#js-remove-modal" 
+                    data-item="Kategori"
+                    data-url="{{ route('kategori.destroy', $category->id) }}"
+                    data-item-name="{{ $category->nama_kategori }}"
+                    onclick="showWarningModal(event)">
+                    Hapus
+                  </button>
                 </td>
               </tr>
               @endforeach

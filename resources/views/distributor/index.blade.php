@@ -39,12 +39,18 @@ Kategori
                 <td>{{ $distributor->telefon }}</td>
                 <td>{{ $distributor->email }}</td>
                 <td>
-                  <form action="{{ route('distributor.destroy', $distributor->id) }}" method="POST">
                   <a href="{{ route('distributor.edit', $distributor->id) }}" class="btn btn-primary">Ubah</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                  </form>
+                  <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    data-toggle="modal" 
+                    data-target="#js-remove-modal" 
+                    data-item="Distributor"
+                    data-url="{{ route('distributor.destroy', $distributor->id) }}"
+                    data-item-name="{{ $distributor->nama }}"
+                    onclick="showWarningModal(event)">
+                    Hapus
+                  </button>
                 </td>
               </tr>
               @endforeach

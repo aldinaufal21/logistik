@@ -25,9 +25,9 @@ class Barang extends Model
         return $items;
     }
 
-    public function kategoriBarang()
+    public function kategori()
     {
-        return $this->belongsTo('App\KategoriBarang');
+        return $this->belongsTo('App\Kategori');
     }
 
     public function distributor()

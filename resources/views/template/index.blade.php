@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,72 +33,111 @@
 
   <link rel="icon" href="{{ asset('images/assets/icon_app.png') }}">
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
+  <!-- Site wrapper -->
+  <div class="wrapper">
 
-  @include('template.header')
+    @include('template.header')
 
-  <!-- =============================================== -->
+    <!-- =============================================== -->
 
-  <!-- Left side column. contains the sidebar -->
-  @if(Auth::user()->role == '1')
+    <!-- Left side column. contains the sidebar -->
+    @if(Auth::user()->role == '1')
     @include('template.sidebar_pengelola')
-  @elseif(Auth::user()->role == '2')
+    @elseif(Auth::user()->role == '2')
     @include('template.sidebar_umkm')
-  @endif
-  
+    @endif
 
-  <!-- =============================================== -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        @yield('title')
-      </h1>
-    </section>
+    <!-- =============================================== -->
 
-    <!-- Main content -->
-    <section class="content">
-      @yield('content')
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          @yield('title')
+        </h1>
+      </section>
 
-  <footer class="main-footer">
-    @include('template.footer')
-  </footer>
+      <!-- Main content -->
+      <section class="content">
+        @yield('content')
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
-  
-  <!-- Add the sidebar's background. This div must be placed
+    <footer class="main-footer">
+      @include('template.footer')
+    </footer>
+
+
+    <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
+    <div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- DataTables -->
-<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-<!-- SlimScroll -->
-<script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-<!-- FastClick -->
-<script src="{{ asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js') }}"></script>
-<script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-</script>
-@yield('extra_script')
+  <!-- Modal Across Views -->
+
+  <!-- DELETE WARNING MODAL -->
+  <div class="modal fade" id="js-remove-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Menghapus <span class="js-item-type"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Apakah anda yakin akan menghapus <span class="js-item-type"></span> <strong><span id="js-item-name"></span></strong>.</p>
+        </div>
+        <div class="modal-footer">
+          <form id="js-delete-form" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery 3 -->
+  <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+  <!-- DataTables -->
+  <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+  <!-- SlimScroll -->
+  <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+  <!-- FastClick -->
+  <script src="{{ asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="{{ asset('dist/js/demo.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      $('.sidebar-menu').tree()
+    })
+
+    function showWarningModal(e) {
+      let url = e.currentTarget.dataset.url;
+      let itemName = e.currentTarget.dataset.itemName;
+      let item = e.currentTarget.dataset.item;
+
+      $('#js-delete-form').attr('action', url);
+      $('#js-item-name').text(itemName);
+      $('.js-item-type').text(item);
+    }
+  </script>
+  @yield('extra_script')
 </body>
+
 </html>

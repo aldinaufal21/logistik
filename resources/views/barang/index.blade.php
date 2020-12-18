@@ -12,10 +12,10 @@ Kategori
     <div class="col-md-12">
       <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title">List Barang</h3>
+          <h3 class="box-title">List Stok Barang</h3>
           <div class="box-tools pull-right">
             <a href="{{ route('barang.create') }}" class="btn btn-primary">
-              Tambah Barang
+              Tambah Stok Barang
             </a>
           </div>
         </div>
@@ -34,17 +34,23 @@ Kategori
             <tbody>
               @foreach ($items as $items)
               <tr>
-                <td>{{ $items->nama_kategori }}</td>
-                <td>{{ $items->nama }}</td>
+                <td>{{ $items->kategori->nama_kategori }}</td>
+                <td>{{ $items->distributor->nama }}</td>
                 <td>{{ $items->harga_beli }}</td>
                 <td>{{ $items->jumlah }}</td>
                 <td>
-                  <form action="{{ route('barang.destroy', $items->id) }}" method="POST">
                   <a href="{{ route('barang.edit', $items->id) }}" class="btn btn-primary">Ubah</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                  </form>
+                  <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    data-toggle="modal" 
+                    data-target="#js-remove-modal" 
+                    data-item="Stok Barang"
+                    data-url="{{ route('barang.destroy', $items->id) }}"
+                    data-item-name="{{ $items->kategori->nama_kategori }}"
+                    onclick="showWarningModal(event)">
+                    Hapus
+                  </button>
                 </td>
               </tr>
               @endforeach

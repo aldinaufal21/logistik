@@ -39,12 +39,18 @@ Kategori
                 <td>{{ $umkm->alamat }}</td>
                 <td><img src='{{ asset("images/$umkm->gambar") }}' width="200"></td>
                 <td>
-                  <form action="{{ route('umkm.destroy', $umkm->id) }}" method="POST">
                   <a href="{{ route('umkm.edit', $umkm->id) }}" class="btn btn-primary">Ubah</a>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                  </form>
+                  <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    data-toggle="modal" 
+                    data-target="#js-remove-modal" 
+                    data-item="UMKM"
+                    data-url="{{ route('umkm.destroy', $umkm->id) }}"
+                    data-item-name="{{ $umkm->nama }}"
+                    onclick="showWarningModal(event)">
+                    Hapus
+                  </button>
                 </td>
               </tr>
               @endforeach

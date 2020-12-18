@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Barang;
 use App\Distributor;
-use App\KategoriBarang;
+use App\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +14,7 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $items = Barang::getAllDetail()->get();
+        $items = Barang::with(['kategori', 'distributor'])->get();
 
         return view('barang.index', compact('items'));
     }
@@ -23,7 +23,7 @@ class BarangController extends Controller
     {
         $umkm = Auth::user()->umkm()->first();
         $distributors = Distributor::where('umkm_id', $umkm->id)->get();
-        $categories = KategoriBarang::where('umkm_id', $umkm->id)->get();
+        $categories = Kategori::where('umkm_id', $umkm->id)->get();
         return view('barang.create', compact('distributors', 'categories'));
     }
 
@@ -56,7 +56,7 @@ class BarangController extends Controller
         $item = Barang::find($barang);
         $umkm = Auth::user()->umkm()->first();
         $distributors = Distributor::where('umkm_id', $umkm->id)->get();
-        $categories = KategoriBarang::where('umkm_id', $umkm->id)->get();
+        $categories = Kategori::where('umkm_id', $umkm->id)->get();
 
         return view('barang.edit', compact('item', 'distributors', 'categories'));
     }
