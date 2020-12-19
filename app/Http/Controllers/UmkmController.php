@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Traits\ImageUpload;
 use App\Umkm;
 use App\User;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UmkmController extends Controller
 {
+    use ImageUpload;
     /**
      * Display a listing of the resource.
      *
@@ -50,10 +52,10 @@ class UmkmController extends Controller
             'username' => 'required|string|unique:users',
             'password' => 'required|string',
         ]);
-
-        $imageName = time().'.'.$request->gambar->extension();  
-   
-        $request->gambar->move(public_path('images'), $imageName);
+        
+        $gambar = $request->gambar;
+        $urlFoto = $request->gambar != null ?
+                    $this->storeImages($gambar, 'umkm') : null;
 
         User::create([
             'name' => $request->nama,
@@ -68,7 +70,7 @@ class UmkmController extends Controller
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
             'alamat' => $request->alamat,
-            'gambar' => $imageName,
+            'gambar' => $urlFoto,
             'user_id' => $user->id,
         ]);
 
@@ -103,19 +105,19 @@ class UmkmController extends Controller
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $umkm = Umkm::find($id);
         $umkm->nama = $request->nama;
         $umkm->deskripsi = $request->deskripsi;
         $umkm->alamat = $request->alamat;
+        
+        $gambar = $request->gambar;
+        $urlFoto = $request->gambar != null ?
+                    $this->storeImages($gambar, 'umkm') : $umkm->gambar;
 
-        $imageName = time().'.'.$request->gambar->extension();  
-   
-        $request->gambar->move(public_path('images'), $imageName);
-
-        $umkm->gambar = $imageName;
+        $umkm->gambar = $urlFoto;
 
         $umkm->update();
 
