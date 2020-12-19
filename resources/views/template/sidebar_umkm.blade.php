@@ -34,11 +34,11 @@
         <li class="{{ (request()->is('kategori*')) ? 'active' : '' }}">
             <a href="{{ route('kategori.index') }}"><i class="fa fa-cube"></i> <span>Kelola kategori barang</span></a>
         </li>
-        <li class="{{ (request()->is('barang*')) ? 'active' : '' }}">
+        <li class="{{ (request()->is('barang*') && !request()->is('barang_keluar')) ? 'active' : '' }}">
             <a href="{{ route('barang.index') }}"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
         </li>
         <li class="{{ (request()->is('barang_keluar*')) ? 'active' : '' }}">
-            <a href="/barang_keluar"><i class="fa fa-cart-arrow-down "></i> <span>Kelola barang keluar</span></a>
+            <a href="{{ route('barang_keluar.index') }}"><i class="fa fa-cart-arrow-down "></i> <span>Kelola barang keluar</span></a>
         </li>
         <li class="{{ (request()->is('opname*')) ? 'active' : '' }}">
             <a href="/opname"><i class="fa fa-file-text "></i> <span>Stok Opname</span></a>
