@@ -41,7 +41,7 @@
             <a href="{{ route('barang_keluar.index') }}"><i class="fa fa-cart-arrow-down "></i> <span>Kelola barang keluar</span></a>
         </li>
         <li class="{{ (request()->is('opname*')) ? 'active' : '' }}">
-            <a href="/opname"><i class="fa fa-file-text "></i> <span>Stok Opname</span></a>
+            <a href="{{ route('stok_opname.index') }}"><i class="fa fa-file-text "></i> <span>Stok Opname</span></a>
         </li>
         <li class="{{ (request()->is('report*')) ? 'active' : '' }}">
             <a href="/report"><i class="fa fa-print "></i> <span>Report Data</span></a>

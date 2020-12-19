@@ -27,4 +27,9 @@ class Kategori extends Model
     {
         return $this->hasMany('App\BarangKeluar');
     }
+
+    public function stokOpname()
+    {
+        return $this->hasMany('App\StokOpname');
+    }
 }

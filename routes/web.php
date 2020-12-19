@@ -21,6 +21,7 @@ Route::resource('kategori', 'KategoriBarangController')->middleware('auth');
 Route::resource('distributor', 'DistributorController')->middleware('auth');
 Route::resource('barang', 'BarangController')->middleware('auth');
 Route::resource('barang_keluar', 'BarangKeluarController')->middleware('auth');
+Route::resource('stok_opname', 'StokOpnameController')->middleware('auth');
 Route::resource('umkm', 'UmkmController')->middleware('auth');
 
 Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function (){
