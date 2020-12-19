@@ -1,7 +1,7 @@
 @extends('template.index')
 
 @section('title')
-Kategori
+Barang Keluar
 @endsection
 
 @section('content')
