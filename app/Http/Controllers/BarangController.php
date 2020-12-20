@@ -14,9 +14,9 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $items = Barang::with(['kategori', 'distributor'])->get();
+        $categories = Kategori::all();
 
-        return view('barang.index', compact('items'));
+        return view('barang.index', compact('categories'));
     }
 
     public function create()
@@ -94,5 +94,15 @@ class BarangController extends Controller
         return redirect()
             ->route('barang.index')
             ->with('success', 'Barang Berhasil Dihapus.');
+    }
+
+    public function perKategori(Request $request, $kategori)
+    {
+        $category = Kategori::find($kategori);
+        $items = Barang::with('kategori')
+                    ->where('kategori_id', $kategori)
+                    ->get();
+        
+        return view('barang.per_kategori', compact('items', 'category'));
     }
 }

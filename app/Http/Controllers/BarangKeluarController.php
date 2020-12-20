@@ -12,9 +12,9 @@ class BarangKeluarController extends Controller
 {
     public function index()
     {
-        $outStocks = BarangKeluar::with('kategori')->get();
+        $categories = Kategori::all();
 
-        return view('barang_keluar.index', compact('outStocks'));
+        return view('barang_keluar.index', compact('categories'));
     }
 
     public function create()
@@ -86,5 +86,15 @@ class BarangKeluarController extends Controller
         return redirect()
             ->route('barang_keluar.index')
             ->with('success', 'Barang Keluar barang Berhasil Dihapus.');
+    }
+
+    public function perKategori(Request $request, $kategori)
+    {
+        $category = Kategori::find($kategori);
+        $items = BarangKeluar::with('kategori')
+                    ->where('kategori_id', $kategori)
+                    ->get();
+        
+        return view('barang_keluar.per_kategori', compact('items', 'category'));
     }
 }

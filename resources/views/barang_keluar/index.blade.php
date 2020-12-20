@@ -21,29 +21,23 @@ Barang Keluar
         <table id="js-table-kategori" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Nama Barang</th>
-              <th>Jumlah</th>
+              <th>Nama Kategori Barang</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($outStocks as $outStock)
+            @foreach ($categories as $category)
             <tr>
-              <td>{{ $outStock->kategori->nama_kategori }}</td>
-              <td>{{ $outStock->jumlah }}</td>
+              <td>{{ $category->nama_kategori }}</td>
               <td>
-                <a href="{{ route('barang_keluar.edit', $outStock->id) }}" class="btn btn-primary">Ubah</a>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#js-remove-modal" data-item="Barang Keluar" data-url="{{ route('barang_keluar.destroy', $outStock->id) }}" data-item-name="{{ $outStock->kategori->nama_kategori }}" onclick="showWarningModal(event)">
-                  Hapus
-                </button>
+                <a href="{{ route('barang_keluar.kategori', $category->id) }}" class="btn btn-primary">Lihat</a>
               </td>
             </tr>
             @endforeach
           </tbody>
           <tfoot>
             <tr>
-              <th>Nama Barang</th>
-              <th>Distributor</th>
+              <th>Nama Kategori</th>
               <th>Aksi</th>
             </tr>
           </tfoot>

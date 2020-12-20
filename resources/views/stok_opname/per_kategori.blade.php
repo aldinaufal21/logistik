@@ -11,8 +11,8 @@ Stok Opname
       <div class="box-header">
         <h3 class="box-title">List Stok Opname</h3>
         <div class="box-tools pull-right">
-          <a href="{{ route('stok_opname.create') }}" class="btn btn-primary">
-            Tambah Stok Opname
+          <a href="{{ route('stok_opname.index') }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-arrow-left"></i> Kembali
           </a>
         </div>
       </div>
@@ -21,23 +21,29 @@ Stok Opname
         <table id="js-table-kategori" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Nama Kategori Barang</th>
+              <th>Nama Barang</th>
+              <th>Jumlah</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($categories as $category)
+            @foreach ($items as $items)
             <tr>
-              <td>{{ $category->nama_kategori }}</td>
+              <td>{{ $items->kategori->nama_kategori }}</td>
+              <td>{{ $items->jumlah }}</td>
               <td>
-                <a href="{{ route('stok_opname.kategori', $category->id) }}" class="btn btn-primary">Lihat</a>
+                <a href="{{ route('barang.edit', $items->id) }}" class="btn btn-primary">Ubah</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#js-remove-modal" data-item="Stok Barang" data-url="{{ route('barang.destroy', $items->id) }}" data-item-name="{{ $items->kategori->nama_kategori }}" onclick="showWarningModal(event)">
+                  Hapus
+                </button>
               </td>
             </tr>
             @endforeach
           </tbody>
           <tfoot>
             <tr>
-              <th>Nama Kategori</th>
+              <th>Nama Barang</th>
+              <th>Jumlah</th>
               <th>Aksi</th>
             </tr>
           </tfoot>

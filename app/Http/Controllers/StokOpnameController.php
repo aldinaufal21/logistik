@@ -12,9 +12,9 @@ class StokOpnameController extends Controller
 {
     public function index()
     {
-        $stokOpnames = StokOpname::with('kategori')->get();
+        $categories = Kategori::all();
 
-        return view('stok_opname.index', compact('stokOpnames'));
+        return view('stok_opname.index', compact('categories'));
     }
 
     public function create()
@@ -86,5 +86,15 @@ class StokOpnameController extends Controller
         return redirect()
             ->route('stok_opname.index')
             ->with('success', 'Barang keluar Berhasil Dihapus.');
+    }
+
+    public function perKategori(Request $request, $kategori)
+    {
+        $category = Kategori::find($kategori);
+        $items = StokOpname::with('kategori')
+                    ->where('kategori_id', $kategori)
+                    ->get();
+        
+        return view('stok_opname.per_kategori', compact('items', 'category'));
     }
 }

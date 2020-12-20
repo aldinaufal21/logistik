@@ -28,19 +28,19 @@
         <li class="{{ (request()->is('/')) ? 'active' : '' }}">
           <a href="/"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
-        <li class="{{ (request()->is('distributor*')) ? 'active' : '' }}">
+        <li class="{{ (request()->routeIs('distributor.*')) ? 'active' : '' }}">
             <a href="{{ route('distributor.index') }}"><i class="fa fa-users"></i> <span>Kelola Distributor</span></a>
         </li>
-        <li class="{{ (request()->is('kategori*')) ? 'active' : '' }}">
+        <li class="{{ (request()->routeIs('kategori.*')) ? 'active' : '' }}">
             <a href="{{ route('kategori.index') }}"><i class="fa fa-cube"></i> <span>Kelola kategori barang</span></a>
         </li>
-        <li class="{{ (request()->is('barang*') && !request()->is('barang_keluar')) ? 'active' : '' }}">
+        <li class="{{ (request()->routeIs('barang.*')) ? 'active' : '' }}">
             <a href="{{ route('barang.index') }}"><i class="fa fa-cube"></i> <span>Kelola barang</span></a>
         </li>
-        <li class="{{ (request()->is('barang_keluar*')) ? 'active' : '' }}">
+        <li class="{{ (request()->routeIs('barang_keluar.*')) ? 'active' : '' }}">
             <a href="{{ route('barang_keluar.index') }}"><i class="fa fa-cart-arrow-down "></i> <span>Kelola barang keluar</span></a>
         </li>
-        <li class="{{ (request()->is('opname*')) ? 'active' : '' }}">
+        <li class="{{ (request()->routeIs('stok_opname.*')) ? 'active' : '' }}">
             <a href="{{ route('stok_opname.index') }}"><i class="fa fa-file-text "></i> <span>Stok Opname</span></a>
         </li>
         <li class="{{ (request()->is('report*')) ? 'active' : '' }}">

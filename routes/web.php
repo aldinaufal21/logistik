@@ -1,7 +1,4 @@
 <?php
-
-use App\Http\Controllers\UmkmController;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,12 +14,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('kategori', 'KategoriBarangController')->middleware('auth');
-Route::resource('distributor', 'DistributorController')->middleware('auth');
-Route::resource('barang', 'BarangController')->middleware('auth');
-Route::resource('barang_keluar', 'BarangKeluarController')->middleware('auth');
-Route::resource('stok_opname', 'StokOpnameController')->middleware('auth');
-Route::resource('umkm', 'UmkmController')->middleware('auth');
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('kategori', 'KategoriBarangController');
+    Route::resource('distributor', 'DistributorController');
+    Route::resource('barang', 'BarangController');
+    Route::resource('barang_keluar', 'BarangKeluarController');
+    Route::resource('stok_opname', 'StokOpnameController');
+    Route::resource('umkm', 'UmkmController');
+
+    Route::group(['prefix' => 'kategori'], function () {
+        Route::get('/{kategori}/barang', 'BarangController@perKategori')->name('barang.kategori');
+    });
+
+    Route::group(['prefix' => 'kategori'], function () {
+        Route::get('/{kategori}/barang_keluar', 'BarangKeluarController@perKategori')->name('barang_keluar.kategori');
+    });
+
+    Route::group(['prefix' => 'kategori'], function () {
+        Route::get('/{kategori}/stok_opname', 'StokOpnameController@perKategori')->name('stok_opname.kategori');
+    });
+
+    Route::get('/', 'DashboardController@index')->name('dashboard.index');
+});
+
 
 Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function (){
     Route::get('/', 'PengelolaController@index');
@@ -31,8 +45,6 @@ Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function ()
 // Route::group(['prefix' => 'umkm', 'middleware' => 'Umkm'], function (){
 //     Route::get('/', 'UmkmController@index');
 // });
-
-Route::get('/', 'DashboardController@index')->name('dashboard.index')->middleware('auth');
 
 Auth::routes();
 
