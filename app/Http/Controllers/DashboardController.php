@@ -32,6 +32,16 @@ class DashboardController extends Controller
         return response()->json($categories, 200);
     }
 
+    public function jumlah_biaya_kategori(Request $request, $umkmId)
+    {
+        $items = Barang::getSumJumlahBiaya($umkmId)->get();
+        
+        return response()->json($items, 200);
+    }
+    /**
+     * END API REQUEST
+     */
+
     private function pengelolaDashboardData()
     {
         //daftar 5 terakhir umkm 

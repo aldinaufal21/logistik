@@ -90,12 +90,11 @@ class Kategori extends Model
                 bk.created_at 
             FROM barang_keluar bk
             GROUP BY bk.kategori_id
-        ) barang_keluar ON barang_keluar.kategori_id = k.id
-        WHERE k.umkm_id = ?";
+        ) barang_keluar ON barang_keluar.kategori_id = k.id";
 
         $data = DB::table('kategori')
             ->join(DB::raw('(' . $sql . ') as data'), 'data.id', '=', 'kategori.id')
-            ->setBindings([$umkmId]);
+            ->where('kategori.umkm_id', $umkmId);
         
         return $data;
     }

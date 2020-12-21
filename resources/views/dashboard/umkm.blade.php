@@ -12,12 +12,6 @@ Dashboard
     <div class="box box-danger">
       <div class="box-header with-border">
         <h3 class="box-title">Jumlah per kategori</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
       </div>
       <div class="box-body">
         <canvas id="pieChart" style="height:250px"></canvas>
@@ -34,12 +28,6 @@ Dashboard
     <div class="box box-success">
       <div class="box-header with-border">
         <h3 class="box-title">Jumlah Biaya Kategori</h3>
-
-        <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-        </div>
       </div>
       <div class="box-body">
         <div class="chart">
@@ -143,6 +131,7 @@ Dashboard
   $(function() {
     $('#js-table-5-barang-terakhir, #js-table-kategori-terbanyak').DataTable();
     renderJumlahPerKategoriChart();
+    renderJumlahBiayaPerKategoriChart();
   });
 
   function renderJumlahPerKategoriChart() {
@@ -160,8 +149,6 @@ Dashboard
         });
       }
     });
-
-    console.log(pieData);
 
     //-------------
     //- PIE CHART -
@@ -197,48 +184,44 @@ Dashboard
     // You can switch between pie and douhnut using the method below.
     pieChart.Doughnut(pieData, pieOptions)
   }
-</script>
-<script>
-  $(function() {
-    /* ChartJS
-     * -------
-     * Here we will create a few charts using ChartJS
-     */
 
+  function renderJumlahBiayaPerKategoriChart() {
+    let barChartData = {};
+    $.ajax({
+      url: `/api/dashboard/jumlah_biaya_kategori/${umkmId}`,
+      method: 'get',
+      async: false,
+      success: (res) => {
+        let labels = [];
+        let labelValues = [];
+
+        res.forEach(item => {
+          labels.push(item.nama_kategori);
+          labelValues.push(item.biaya);
+        });
+
+        barChartData = {
+          labels: labels,
+          datasets: [{
+            label: 'Digital Goods',
+            fillColor: 'rgba(60,141,188,0.9)',
+            strokeColor: 'rgba(60,141,188,0.8)',
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: labelValues
+          }]
+        }
+      }
+    });
+    
     //-------------
     //- BAR CHART -
     //-------------
     var barChartCanvas = $('#barChart').get(0).getContext('2d')
     var barChart = new Chart(barChartCanvas)
 
-    var barChartData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [{
-          label: 'Electronics',
-          fillColor: 'rgba(210, 214, 222, 1)',
-          strokeColor: 'rgba(210, 214, 222, 1)',
-          pointColor: 'rgba(210, 214, 222, 1)',
-          pointStrokeColor: '#c1c7d1',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data: [65, 59, 80, 81, 56, 55, 40]
-        },
-        {
-          label: 'Digital Goods',
-          fillColor: 'rgba(60,141,188,0.9)',
-          strokeColor: 'rgba(60,141,188,0.8)',
-          pointColor: '#3b8bba',
-          pointStrokeColor: 'rgba(60,141,188,1)',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data: [28, 48, 40, 19, 86, 27, 90]
-        }
-      ]
-    }
-
-    barChartData.datasets[1].fillColor = '#00a65a'
-    barChartData.datasets[1].strokeColor = '#00a65a'
-    barChartData.datasets[1].pointColor = '#00a65a'
     var barChartOptions = {
       //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
       scaleBeginAtZero: true,
@@ -269,6 +252,16 @@ Dashboard
 
     barChartOptions.datasetFill = false
     barChart.Bar(barChartData, barChartOptions)
+  }
+</script>
+<script>
+  $(function() {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    
   });
 </script>
 @endsection

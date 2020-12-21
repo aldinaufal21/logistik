@@ -51,11 +51,11 @@ Auth::routes();
 
 Route::get('nyoba_query', function () {
     DB::enableQueryLog();
-    $q = \App\Kategori::dataDetail(1)->limit(5)->orderBy('stok', 'desc')->get();
+    $q = \App\Barang::getSumJumlahBiaya(1)->get();
     dd(DB::getQueryLog());
 });
 Route::get('hasil_query', function () {
-    $q = \App\Kategori::dataDetail(1)->get();
+    $q = \App\Barang::getSumJumlahBiaya(1)->get();
     dd($q);
 });
 

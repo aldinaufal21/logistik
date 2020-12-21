@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('jumlah_per_kategori/{umkm_id}', 'DashboardController@jumlah_per_kategori');
+    Route::get('jumlah_biaya_kategori/{umkm_id}', 'DashboardController@jumlah_biaya_kategori');
 });
