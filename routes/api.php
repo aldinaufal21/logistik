@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::get('jumlah_per_kategori/{umkm_id}', 'DashboardController@jumlah_per_kategori');
 });

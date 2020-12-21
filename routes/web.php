@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,4 +48,14 @@ Route::group(['prefix' => 'pengelola', 'middleware' => 'Pengelola'], function ()
 // });
 
 Auth::routes();
+
+Route::get('nyoba_query', function () {
+    DB::enableQueryLog();
+    $q = \App\Kategori::dataDetail(1)->limit(5)->orderBy('stok', 'desc')->get();
+    dd(DB::getQueryLog());
+});
+Route::get('hasil_query', function () {
+    $q = \App\Kategori::dataDetail(1)->get();
+    dd($q);
+});
 
