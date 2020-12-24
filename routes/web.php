@@ -1,4 +1,6 @@
 <?php
+
+use Facade\FlareClient\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +38,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
+
+    Route::group(['prefix' => 'report'], function()
+    {
+        Route::get('/', 'ReportController@index');
+        Route::post('/barang', 'ReportController@exportData')->name('report.exportData');
+    });
 });
 
 

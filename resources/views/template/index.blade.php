@@ -32,6 +32,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
   <link rel="icon" href="{{ asset('images/assets/icon_app.png') }}">
+
+  <!-- DatePicker --> 
+  <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -129,6 +132,8 @@
   <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('dist/js/demo.js') }}"></script>
+  <!-- Datepicker -->
+  <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
   <script>
     $(document).ready(function() {
       $('.sidebar-menu').tree()
@@ -143,6 +148,17 @@
       $('#js-item-name').text(itemName);
       $('.js-item-type').text(item);
     }
+  </script>
+
+  {{-- datepicker --}}
+  <script type="text/javascript">
+    $(function(){
+    $(".datepicker").datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        todayHighlight: true,
+    });
+    });
   </script>
   @yield('extra_script')
 </body>
