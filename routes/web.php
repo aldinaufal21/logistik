@@ -24,6 +24,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('barang_keluar', 'BarangKeluarController');
     Route::resource('stok_opname', 'StokOpnameController');
     Route::resource('umkm', 'UmkmController');
+    
+    Route::group(['prefix' => 'profile'], function ()
+    {
+        Route::get('/', 'ProfileController@index');
+        Route::post('/password', 'ProfileController@password')->name('profile.password');
+    });
 
     Route::group(['prefix' => 'kategori'], function () {
         Route::get('/{kategori}/barang', 'BarangController@perKategori')->name('barang.kategori');
