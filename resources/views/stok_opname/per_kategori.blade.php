@@ -27,15 +27,17 @@ Stok Opname
             </tr>
           </thead>
           <tbody>
-            @foreach ($items as $items)
+            @foreach ($items as $item)
             <tr>
-              <td>{{ $items->kategori->nama_kategori }}</td>
-              <td>{{ $items->jumlah }}</td>
+              <td>{{ $item->kategori->nama_kategori }}</td>
+              <td>{{ $item->jumlah }}</td>
               <td>
-                <a href="{{ route('barang.edit', $items->id) }}" class="btn btn-primary">Ubah</a>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#js-remove-modal" data-item="Stok Barang" data-url="{{ route('barang.destroy', $items->id) }}" data-item-name="{{ $items->kategori->nama_kategori }}" onclick="showWarningModal(event)">
+                @if(date('Y-m-d', strtotime($item->created_at)) == date('Y-m-d'))
+                <a href="{{ route('barang.edit', $item->id) }}" class="btn btn-primary">Ubah</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#js-remove-modal" data-item="Stok Barang" data-url="{{ route('barang.destroy', $item->id) }}" data-item-name="{{ $item->kategori->nama_kategori }}" onclick="showWarningModal(event)">
                   Hapus
                 </button>
+                @endif
               </td>
             </tr>
             @endforeach
