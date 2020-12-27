@@ -23,6 +23,11 @@ Kategori
     <div class="box box-primary">
       <div class="box-header with-border">
         <h3 class="box-title">Ubah Kategori Barang</h3>
+        <div class="box-tools pull-right">
+          <a href="{{ url()->previous() }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-arrow-left"></i> Kembali
+          </a>
+        </div>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
